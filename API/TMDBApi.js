@@ -12,11 +12,17 @@ export function getFilmsFromApiWithSearchedText(text, page) {
     return fetFromApi(url);
 }
 
+// Récupération du détail d'un film
+export function getFilmDetailFromApi(id) {
+    return fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + API_TOKEN + '&language=fr')
+        .then((response) => response.json())
+        .catch((error) => console.error(error));
+}
+
 export function getTrendingFilms() {
     const url = 'https://api.themoviedb.org/3/trending/all/day?api_key=' + API_TOKEN + '&language=fr';
     return fetFromApi(url);
 }
-
 
 export function getImageFromApi(name) {
     return 'https://image.tmdb.org/t/p/w300' + name;

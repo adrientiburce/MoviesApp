@@ -1,17 +1,15 @@
-// Components/Search.js
+import React, {Component} from 'react'
+import {StyleSheet, View, TextInput, Button, FlatList, ActivityIndicator} from 'react-native'
+import FilmItem from '../FilmItem'
+import {getFilmsFromApiWithSearchedText} from '../../API/TMDBApi'
 
-import React from 'react'
-import { StyleSheet, View, TextInput, Button, Text, FlatList, ActivityIndicator } from 'react-native'
-import FilmItem from './FilmItem'
-import { getFilmsFromApiWithSearchedText } from '../API/TMDBApi'
-
-class Search extends React.Component {
+class Search extends Component {
 
     constructor(props) {
         super(props);
         this.searchedText = "";
-        this.page = 0
-        this.totalPages = 0
+        this.page = 0;
+        this.totalPages = 0;
         this.state = {
             films: [],
             isLoading: false
@@ -20,12 +18,12 @@ class Search extends React.Component {
 
     _loadFilms() {
         if (this.searchedText.length > 0) {
-            this.setState({ isLoading: true })
-            getFilmsFromApiWithSearchedText(this.searchedText, this.page+1).then(data => {
-                this.page = data.page
-                this.totalPages = data.total_pages
+            this.setState({isLoading: true});
+            getFilmsFromApiWithSearchedText(this.searchedText, this.page + 1).then(data => {
+                this.page = data.page;
+                this.totalPages = data.total_pages;
                 this.setState({
-                    films: [ ...this.state.films, ...data.results ],
+                    films: [...this.state.films, ...data.results],
                     isLoading: false
                 })
             })
@@ -50,10 +48,14 @@ class Search extends React.Component {
         if (this.state.isLoading) {
             return (
                 <View style={styles.loading_container}>
-                    <ActivityIndicator size='large' />
+                    <ActivityIndicator size='large'/>
                 </View>
             )
         }
+    }
+
+    _displayDetailForFilm = (idFilm) => {
+        this.props.navigation.navigate('FilmDetail', {idFilm: idFilm})
     }
 
     render() {
@@ -69,7 +71,7 @@ class Search extends React.Component {
                 <FlatList
                     data={this.state.films}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) => <FilmItem film={item}/>}
+                    renderItem={({item}) => <FilmItem film={item} displayDetailForFilm={this._displayDetailForFilm}/>}
                     onEndReachedThreshold={0.5}
                     onEndReached={() => {
                         if (this.page < this.totalPages) {

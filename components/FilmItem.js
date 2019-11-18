@@ -1,29 +1,34 @@
-import React from 'react'
-import {Image, StyleSheet, Text, View} from "react-native";
+import React, {Component} from 'react'
+import {Image, StyleSheet, Text, View, TouchableOpacity} from "react-native";
 import {getImageFromApi} from '../API/TMDBApi'
 
-const FilmItem = ({film}) => {
-    return (
-        <View style={styles.main_container}>
-            <Image
-                style={styles.image}
-                source={{uri: getImageFromApi(film.poster_path)}}
-            />
-            <View style={styles.content}>
-                <View style={styles.header}>
-                    <Text style={styles.title_text}>{film.title}</Text>
-                    <Text style={styles.vote_text}>{film.vote_average}</Text>
+class FilmItem extends Component {
+    render() {
+        const {film, displayDetailForFilm} = this.props;
+        return (
+            <TouchableOpacity
+                style={styles.main_container}
+                onPress={() => displayDetailForFilm(film.id)}>
+                <Image
+                    style={styles.image}
+                    source={{uri: getImageFromApi(film.poster_path)}}
+                />
+                <View style={styles.content}>
+                    <View style={styles.header}>
+                        <Text style={styles.title_text}>{film.title}</Text>
+                        <Text style={styles.vote_text}>{film.vote_average}</Text>
+                    </View>
+                    <View style={styles.overview}>
+                        <Text numberOfLines={6}>{film.overview}</Text>
+                    </View>
+                    <View style={styles.date}>
+                        <Text>Film sorti le {film.release_date}</Text>
+                    </View>
                 </View>
-                <View style={styles.overview}>
-                    <Text numberOfLines={6}>{film.overview}</Text>
-                </View>
-                <View style={styles.date}>
-                    <Text>Film sorti le {film.release_date}</Text>
-                </View>
-            </View>
-        </View>
-    )
-};
+            </TouchableOpacity>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     main_container: {
