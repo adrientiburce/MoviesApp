@@ -42,7 +42,14 @@ const styles = StyleSheet.create({
       marginLeft: 5,
       marginRight: 5,
       marginTop: 5,
-    }
+    },
+    favorite_btn: {
+      alignItems: 'center'
+    },
+    favorite_image: {
+      width: 40,
+      height: 40
+  }
   })
 
 export default styles
