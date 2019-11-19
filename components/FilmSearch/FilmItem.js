@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Image, StyleSheet, Text, View, TouchableOpacity} from "react-native";
-import {getImageFromApi} from '../API/TMDBApi'
+import {getImageFromApi} from '../../API/TMDBApi'
 
 class FilmItem extends Component {
 
@@ -19,7 +19,7 @@ class FilmItem extends Component {
                         {this.props.isFilmFavorite &&
                         <Image 
                             style={styles.favorite_image} 
-                            source={require("../assets/Image/heart_full.png")} />
+                            source={require("../../assets/Image/heart_full.png")} />
                         }
                         <Text style={styles.title_text}>{film.title}</Text>
                         <Text style={styles.vote_text}>{film.vote_average}</Text>

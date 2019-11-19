@@ -7,7 +7,7 @@ import {
   FlatList,
   ActivityIndicator
 } from "react-native";
-import FilmItem from "../FilmItem";
+import FilmItem from "./FilmItem";
 import { getFilmsFromApiWithSearchedText } from "../../API/TMDBApi";
 import {connect} from 'react-redux';
 
