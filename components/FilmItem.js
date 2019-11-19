@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, View, TouchableOpacity} from "react-native";
 import {getImageFromApi} from '../API/TMDBApi'
 
 class FilmItem extends Component {
+
     render() {
         const {film, displayDetailForFilm} = this.props;
         return (
@@ -15,6 +16,11 @@ class FilmItem extends Component {
                 />
                 <View style={styles.content}>
                     <View style={styles.header}>
+                        {this.props.isFilmFavorite &&
+                        <Image 
+                            style={styles.favorite_image} 
+                            source={require("../assets/Image/heart_full.png")} />
+                        }
                         <Text style={styles.title_text}>{film.title}</Text>
                         <Text style={styles.vote_text}>{film.vote_average}</Text>
                     </View>
@@ -68,7 +74,11 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         justifyContent: 'flex-end',
         alignItems: 'center'
-    }
+    },
+    favorite_image: {
+      width: 20,
+      height: 20
+  }
 });
 
 export default FilmItem;

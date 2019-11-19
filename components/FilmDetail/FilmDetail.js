@@ -54,13 +54,13 @@ class FilmDetail extends React.Component {
   }
 
   _displayFavoriteImage() {
-    var sourceImage = require("./Image/heart_raw.png");
+    var sourceImage = require("../../assets/Image/heart_raw.png");
     if (this.props.favoritesFilm.findIndex(
         item => item.id === this.state.film.id
       ) !== -1
     ) {
       // Film dans nos favoris
-      sourceImage = require("./Image/heart_full.png");
+      sourceImage = require("../../assets/Image/heart_full.png");
     }
     return <Image style={styles.favorite_image} source={sourceImage} />;
   }
