@@ -26,7 +26,7 @@ class Search extends Component {
     }
   }
 
-  _loadFilms() {
+  _loadFilms = () => {
     if (this.searchedText.length > 0) {
       this.setState({ isLoading: true });
       getFilmsFromApiWithSearchedText(this.searchedText, this.page + 1).then(
@@ -49,11 +49,9 @@ class Search extends Component {
   _searchFilms() {
     this.page = 0;
     this.totalPages = 0;
-    this.setState(
-      {
+    this.setState({
         films: []
-      },
-      () => {
+      },() => {
         this._loadFilms();
       }
     );

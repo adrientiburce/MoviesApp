@@ -38,8 +38,8 @@ class FilmList extends Component {
         )}
         onEndReachedThreshold={0.5}
         onEndReached={() => {
-          if (this.page < this.totalPages) {
-            this._loadFilms();
+          if (this.props.page < this.props.totalPages) {
+            this.props._loadFilms();
           }
         }}
       />
