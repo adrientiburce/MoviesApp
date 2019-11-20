@@ -23,6 +23,21 @@ const SearchStackNavigator = createStackNavigator({
   }
 });
 
+const FavoriteStackNavigator = createStackNavigator({
+  Favorites: {
+    screen: Favorites,
+    navigationOptions: {
+      title: "Mes Favoris"
+    }
+  },
+  FilmDetail: {
+    screen: FilmDetail,
+    navigationOptions: {
+      title: "Un Film"
+    }
+  }
+});
+
 const MoviesTabNavigator = createBottomTabNavigator(
   {
     Search: {
@@ -40,7 +55,7 @@ const MoviesTabNavigator = createBottomTabNavigator(
       }
     },
     Favorites: {
-      screen: Favorites,
+      screen: FavoriteStackNavigator,
       navigationOptions: {
         tabBarIcon: () => {
           return (

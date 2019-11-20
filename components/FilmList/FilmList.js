@@ -7,9 +7,6 @@ import { connect } from "react-redux";
 class FilmList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: false
-    };
   }
 
   _displayDetailForFilm = (idFilm) => {
